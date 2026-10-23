@@ -1,0 +1,80 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Apps</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<style>
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap');
+</style>
+		<link rel="icon" href="/arcteryx.svg" />
+		<link rel="stylesheet" href="/index.css" />
+	<script src="/cloak.js"></script>
+	</head>
+	<body>
+		<div class="topline" aria-hidden="true"></div>
+		<button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">
+			<img src="arcteryx.svg" alt="" class="ham-logo" />
+		</button>
+		<nav class="menu" id="menu" aria-hidden="true">
+			<a href="/" data-b="SG9tZQ=="></a>
+			<a href="/r" data-b="QXBwcw=="></a>
+			<a href="/g" data-b="R2FtZXM="></a>
+			<a href="/m" data-b="TW92aWVz"></a>
+			<a href="/s" data-b="U2V0dGluZ3M="></a>
+		</nav>
+
+		<main class="apps-wrap">
+			<img class="logo small" src="arcteryx.svg" alt="" />
+			<h1 data-b="QXBwcw=="></h1>
+			<p class="sub" data-b="d2ViIGFwcHM="></p>
+			<input class="games-search" id="search" type="text" placeholder="Search..." style="margin-bottom:16px;width:100%;max-width:320px;" />
+			<div class="grid" id="grid">
+				<a class="tile" href="/?goto=https://www.geforcenow.com">
+					<img class="tile-icon" src="https://www.google.com/s2/favicons?domain=geforcenow.com&sz=128" alt="" />
+					<span data-b="R2VGb3JjZSBOb3c="></span>
+				</a>
+				<a class="tile" href="/?goto=https://www.youtube.com">
+					<img class="tile-icon" src="https://www.google.com/s2/favicons?domain=youtube.com&sz=128" alt="" />
+					<span data-b="WW91VHViZQ=="></span>
+				</a>
+				<a class="tile" href="/?goto=https://discord.com">
+					<img class="tile-icon" src="https://www.google.com/s2/favicons?domain=discord.com&sz=128" alt="" />
+					<span data-b="RGlzY29yZA=="></span>
+				</a>
+				<a class="tile" href="/?goto=https://www.xbox.com/play">
+					<img class="tile-icon" src="https://www.google.com/s2/favicons?domain=xbox.com&sz=128" alt="" />
+					<span data-b="WGJveCBDbG91ZA=="></span>
+				</a>
+			</div>
+		</main>
+
+		<footer><span data-b="bWFkZSBieSBzbm93IDwz"></span></footer>
+
+		<script>
+			(function () {
+				function D(s){ try { return atob(s); } catch(e){ return s; } }
+				document.querySelectorAll("[data-b]").forEach(function(el){ el.textContent = D(el.getAttribute("data-b")); });
+			})();
+		</script>
+
+		<script>
+			(function () {
+				var input = document.getElementById("search");
+				if (input) {
+					input.addEventListener("input", function () {
+						var q = input.value.toLowerCase();
+						document.querySelectorAll("#grid .tile").forEach(function (t) {
+							var txt = t.textContent.toLowerCase();
+							t.style.display = txt.includes(q) ? "" : "none";
+						});
+					});
+				}
+			})();
+		</script>
+\t\t<script src="/menu.js"></script>
+	</body>
+</html>
+

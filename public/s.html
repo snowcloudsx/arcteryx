@@ -1,0 +1,164 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Settings</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<style>
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap');
+</style>
+		<link rel="icon" href="/arcteryx.svg" />
+		<link rel="stylesheet" href="/index.css" />
+		<style>
+			.settings-wrap { width: 100%; max-width: 560px; padding: 24px; margin: 0 auto; text-align: center; }
+			.settings-wrap h1 { font-size: 22px; font-weight: 800; letter-spacing: 4px; text-transform: uppercase; margin-bottom: 8px; }
+			.settings-wrap .sub { margin-bottom: 28px; }
+			.setting { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; padding: 16px 18px; margin-bottom: 10px; display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+			.setting .label { font-size: 12px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; }
+			.setting select, .setting input { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: #ffffff; padding: 8px 12px; border-radius: 8px; font-size: 12px; font-family: inherit; outline: none; }
+			.save-btn { margin-top: 16px; background: #ffffff; color: #000000; border: none; padding: 12px 24px; border-radius: 10px; font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; }
+		</style>
+	<script src="/cloak.js"></script>
+	</head>
+	<body>
+		<div class="topline" aria-hidden="true"></div>
+		<button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">
+			<img src="arcteryx.svg" alt="" class="ham-logo" />
+		</button>
+		<nav class="menu" id="menu" aria-hidden="true">
+			<a href="/" data-b="SG9tZQ=="></a>
+			<a href="/r" data-b="QXBwcw=="></a>
+			<a href="/g" data-b="R2FtZXM="></a>
+			<a href="/m" data-b="TW92aWVz"></a>
+			<a href="/s" data-b="U2V0dGluZ3M="></a>
+		</nav>
+
+		<main class="settings-wrap">
+			<img class="logo small" src="arcteryx.svg" alt="" />
+			<h1 data-b="U2V0dGluZ3M="></h1>
+			<p class="sub" data-b="cHJveHkgc2V0dGluZ3M="></p>
+
+			<div class="setting">
+				<span class="label" data-b="VHJhbnNwb3J0"></span>
+				<select id="transport">
+					<option value="libcurl">Libcurl</option>
+					<option value="epoxy">Epoxy</option>
+				</select>
+			</div>
+			<div class="setting">
+				<span class="label" data-b="UHJvdG9jb2w="></span>
+				<select id="protocol">
+					<option value="auto">Auto</option>
+					<option value="ws">WS</option>
+					<option value="wss">WSS</option>
+				</select>
+			</div>
+			<div class="setting">
+				<span class="label" data-b="V2lzcCBVUkw="></span>
+				<input id="wisp" type="text" placeholder="ws://localhost:8080/wisp/" />
+			</div>
+
+			<div class="setting">
+				<span class="label">Tab Title</span>
+				<input id="cloak-title" type="text" placeholder="Google Classroom" />
+			</div>
+			<div class="setting">
+				<span class="label">Tab Icon URL</span>
+				<input id="cloak-icon" type="text" placeholder="https://..." />
+			</div>
+			<div class="setting">
+				<span class="label">Panic Key</span>
+				<input id="cloak-key" type="text" placeholder="`" />
+			</div>
+			<div class="setting">
+				<span class="label">Panic URL</span>
+				<input id="cloak-url" type="text" placeholder="https://classroom.google.com" />
+			</div>
+
+			<div class="setting">
+				<span class="label">Export Data</span>
+				<button id="export-btn" class="save-btn" style="margin:0;padding:8px 14px;">Export</button>
+			</div>
+			<div class="setting">
+				<span class="label">Import Data</span>
+				<input id="import-file" type="file" accept="application/json" />
+			</div>
+
+			<button class="save-btn" id="save" data-b="U2F2ZQ=="></button>
+		</main>
+
+		<footer><span data-b="bWFkZSBieSBzbm93IDwz"></span></footer>
+
+		<script>
+			(function () {
+				function D(s){ try { return atob(s); } catch(e){ return s; } }
+				document.querySelectorAll("[data-b]").forEach(function(el){ el.textContent = D(el.getAttribute("data-b")); });
+			})();
+		</script>
+
+\t\t<script src="/menu.js"></script>
+
+		<script>
+			(function () {
+				try {
+					document.getElementById("transport").value = localStorage.getItem("proxy_transport") || "libcurl";
+					document.getElementById("protocol").value = localStorage.getItem("proxy_protocol") || "auto";
+					document.getElementById("wisp").value = localStorage.getItem("proxy_wisp") || "";
+					document.getElementById("cloak-title").value = localStorage.getItem("cloak_title") || "";
+					document.getElementById("cloak-icon").value = localStorage.getItem("cloak_icon") || "";
+					document.getElementById("cloak-key").value = localStorage.getItem("cloak_panic_key") || "";
+					document.getElementById("cloak-url").value = localStorage.getItem("cloak_panic_url") || "";
+				} catch (e) {}
+				document.getElementById("save").addEventListener("click", function () {
+					try {
+						localStorage.setItem("proxy_transport", document.getElementById("transport").value);
+						localStorage.setItem("proxy_protocol", document.getElementById("protocol").value);
+						localStorage.setItem("proxy_wisp", document.getElementById("wisp").value);
+						localStorage.setItem("cloak_title", document.getElementById("cloak-title").value);
+						localStorage.setItem("cloak_icon", document.getElementById("cloak-icon").value);
+						localStorage.setItem("cloak_panic_key", document.getElementById("cloak-key").value);
+						localStorage.setItem("cloak_panic_url", document.getElementById("cloak-url").value);
+					} catch (e) {}
+					alert("Saved. Reload to apply.");
+				});
+
+				// Export
+				document.getElementById("export-btn").addEventListener("click", function () {
+					const data = {};
+					for (let i = 0; i < localStorage.length; i++) {
+						const k = localStorage.key(i);
+						data[k] = localStorage.getItem(k);
+					}
+					const blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" });
+					const a = document.createElement("a");
+					a.href = URL.createObjectURL(blob);
+					a.download = "backup.json";
+					a.click();
+					URL.revokeObjectURL(a.href);
+				});
+
+				// Import
+				document.getElementById("import-file").addEventListener("change", function (e) {
+					const file = e.target.files[0];
+					if (!file) return;
+					const reader = new FileReader();
+					reader.onload = function (ev) {
+						try {
+							const data = JSON.parse(ev.target.result);
+							Object.keys(data).forEach(function (k) {
+								localStorage.setItem(k, data[k]);
+							});
+							alert("Imported. Reload to apply.");
+						} catch (err) {
+							alert("Import failed");
+						}
+					};
+					reader.readAsText(file);
+				});
+			})();
+		</script>
+	</body>
+</html>
+

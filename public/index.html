@@ -1,0 +1,140 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Arc'teryx Proxy</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<style>
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap');
+</style>
+		<link rel="icon" href="/arcteryx.svg" />
+		<link rel="stylesheet" href="/index.css" />
+
+		<meta name="robots" content="noindex" />
+
+		<script src="/bootstrap-init.js"></script>
+		<script src="/cloak.js"></script>
+	</head>
+	<body>
+		<canvas id="drip-canvas" aria-hidden="true"></canvas>
+		<div class="topline" aria-hidden="true"></div>
+
+		<button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">
+			<img src="arcteryx.svg" alt="" class="ham-logo" />
+		</button>
+		<nav class="menu" id="menu" aria-hidden="true">
+			<a href="/" data-b="SG9tZQ=="></a>
+			<a href="/r" data-b="QXBwcw=="></a>
+			<a href="/g" data-b="R2FtZXM="></a>
+			<a href="/m" data-b="TW92aWVz"></a>
+			<a href="/s" data-b="U2V0dGluZ3M="></a>
+		</nav>
+
+		<main>
+			<div class="brand">
+				<img class="logo" src="arcteryx.svg" alt="Arc'teryx" />
+			</div>
+
+			<h1 data-b="QXJjJ3Rlcnl4IFByb3h5"></h1>
+			<p class="sub" data-b="c2VhcmNoIHRoZSB3ZWIgZnJlZWx5"></p>
+			<p class="live"><span id="user-count">0</span> <span data-b="dXNlcnMgb25saW5l"></span></p>
+
+			<form id="main-form">
+				<input
+					id="search-engine"
+					value="https://search.brave.com/search?q=%s"
+					type="hidden"
+				/>
+				<input
+					id="address-input"
+					type="text"
+					data-placeholder-b="U2VhcmNoIG9yIGVudGVyIGEgVVJM"
+					autocomplete="off"
+					spellcheck="false"
+				/>
+				<button type="submit" data-b="R28="></button>
+			</form>
+
+			<p id="error-msg"></p>
+			<pre id="error-code"></pre>
+		</main>
+
+		<div id="frame-wrapper">
+			<p id="frame-url"></p>
+			<iframe id="frame"></iframe>
+		</div>
+
+		<footer>
+			<span data-b="bWFkZSBieSBzbm93IDwz"></span>
+		</footer>
+
+		<script src="https://cdn.jsdelivr.net/npm/eruda"></script>
+		<script>eruda.init();</script>
+
+		<script>
+			(function () {
+				// decode base64 text nodes
+				function D(s){ try { return atob(s); } catch(e){ return s; } }
+				document.querySelectorAll("[data-b]").forEach(function(el){
+					el.textContent = D(el.getAttribute("data-b"));
+				});
+				document.querySelectorAll("[data-placeholder-b]").forEach(function(el){
+					el.placeholder = D(el.getAttribute("data-placeholder-b"));
+				});
+			})();
+		</script>
+
+\t\t<script src="/menu.js"></script>
+
+		<script src="/search.js"></script>
+		<script src="/index.js"></script>
+
+		<script>
+			(function () {
+				const canvas = document.getElementById("drip-canvas");
+				if (!canvas) return;
+				const ctx = canvas.getContext("2d");
+				let w, h;
+				function resize() {
+					w = canvas.width = window.innerWidth;
+					h = canvas.height = window.innerHeight;
+				}
+				resize();
+				window.addEventListener("resize", resize);
+
+				const drops = [];
+				function spawn() {
+					drops.push({
+						x: Math.random() * w,
+						y: -10,
+						vy: 1 + Math.random() * 2,
+						len: 20 + Math.random() * 40,
+						alpha: 0.3 + Math.random() * 0.5,
+					});
+				}
+
+				function frame() {
+					ctx.clearRect(0, 0, w, h);
+					if (Math.random() < 0.05) spawn();
+					for (let i = drops.length - 1; i >= 0; i--) {
+						const d = drops[i];
+						d.y += d.vy;
+						d.vy += 0.05;
+						ctx.strokeStyle = "rgba(255,255,255," + d.alpha + ")";
+						ctx.lineWidth = 1;
+						ctx.beginPath();
+						ctx.moveTo(d.x, d.y - d.len);
+						ctx.lineTo(d.x, d.y);
+						ctx.stroke();
+						if (d.y > h + 20) drops.splice(i, 1);
+					}
+					requestAnimationFrame(frame);
+				}
+				frame();
+			})();
+		</script>
+	</body>
+</html>
+

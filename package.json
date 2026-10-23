@@ -1,0 +1,15 @@
+{
+	"name": "scramjet-arcteryx-proxy",
+	"version": "1.0.0",
+	"description": "Arc'teryx-themed scramjet v2 proxy",
+	"main": "server.js",
+	"type": "module",
+	"scripts": {
+		"start": "node server.js",
+		"dev": "node server.js"
+	},
+	"dependencies": {
+		"@mercuryworkshop/proxy-bootstrap": "^0.0.5",
+		"express": "^4.21.2"
+	}
+}
